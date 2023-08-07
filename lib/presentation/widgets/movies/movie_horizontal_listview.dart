@@ -3,8 +3,7 @@ import 'package:proyecto_grupo10/config/helpers/human_format.dart';
 import 'package:proyecto_grupo10/domain/entities/movie.dart';
 import 'package:animate_do/animate_do.dart';
 
-
-class MovieHorizontalListview extends StatelessWidget {
+class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final String? subTitle;
@@ -21,24 +20,52 @@ class MovieHorizontalListview extends StatelessWidget {
   );
 
   @override
+  State<MovieHorizontalListview> createState() => _MovieHorizontalListviewState();
+}
+
+class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
+
+  final scrollController = ScrollController();
+
+ @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(() {
+      if( widget.loadNextPage == null  ) return;
+
+      if(( scrollController.position.pixels + 200 ) >= scrollController.position.maxScrollExtent){
+        widget.loadNextPage!();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 350,
       child: Column(
         children: [
-          if( title != null || subTitle != null)
+          if( widget.title != null || widget.subTitle != null)
             _Title(
-              title: title,
-              subTitle: subTitle,
+              title: widget.title,
+              subTitle: widget.subTitle,
             ),
 
             Expanded(
               child: ListView.builder(
-                itemCount: movies.length,
+                controller: scrollController,
+                itemCount: widget.movies.length,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return _Slide(movie: movies[index]);
+                  return _Slide(movie: widget.movies[index]);
                 },
               )
             ),
@@ -106,7 +133,6 @@ class _Slide extends StatelessWidget {
               Text('${ movie.voteAverage }', style: textStyles.bodyMedium?.copyWith( color: Colors.yellow.shade800),),
               const SizedBox(width: 10,),
               Text( HumanFormats.number(movie.popularity), style: textStyles.bodySmall, ),
-              
             ],
           )
         ]
@@ -117,7 +143,7 @@ class _Slide extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-
+  
   final String? title;
   final String? subTitle;
 
@@ -128,6 +154,10 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // para traducir el día a español
+    // const locale = 'es';
+    // initializeDateFormatting(locale);
 
     final titleStyle =  Theme.of(context).textTheme.titleLarge;
 
@@ -143,7 +173,7 @@ class _Title extends StatelessWidget {
             FilledButton.tonal(
               style: const ButtonStyle( visualDensity: VisualDensity.compact),
               onPressed: (){},
-              child: Text( subTitle! ) 
+              child: Text( subTitle! ) // método para obtener y presentar el día actual
             )
         ],
       ),
