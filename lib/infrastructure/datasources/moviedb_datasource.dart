@@ -3,6 +3,7 @@ import 'package:proyecto_grupo10/config/constants/environment.dart';
 import 'package:proyecto_grupo10/domain/datasources/movies_datasource.dart';
 import 'package:proyecto_grupo10/domain/entities/movie.dart';
 import 'package:proyecto_grupo10/infrastructure/mappers/movie_mapper.dart';
+import 'package:proyecto_grupo10/infrastructure/models/moviedb/movie_details.dart';
 import 'package:proyecto_grupo10/infrastructure/models/moviedb/moviedb_response.dart';
 
 class MoviedbDatasource extends MoviesDatasource {
@@ -61,5 +62,18 @@ class MoviedbDatasource extends MoviesDatasource {
     );
 
     return _jsonToMovies(response.data);
+  }
+
+  @override
+  Future<Movie> getMovieById( String id) async {
+    final response = await dio.get('/movie/$id');
+    if ( response.statusCode != 200 ) throw  Exception('Movie with id: $id not found');
+
+    final movieDetails = MovieDetails.fromJson(response.data);
+
+    final Movie movie = MovieMapper.movieDetailsToEntity(movieDetails);
+
+    return movie;
+
   }
 }
