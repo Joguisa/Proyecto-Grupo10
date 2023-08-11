@@ -4,7 +4,12 @@ import 'package:proyecto_grupo10/domain/entities/movie.dart';
 
 import 'movies_repository_provider.dart';
 
-final movieDetailProdiver = StateNotifierProvider((ref) {
+/**
+ * Hay que poner este tipo <MovieMapNotifier, Map<String, Movie>>
+ * para que riverpod sepa que tipo de dato es el que fluye
+ * a traver del movieDetailProdiver
+ *////
+final movieDetailProdiver = StateNotifierProvider<MovieMapNotifier, Map<String, Movie>>((ref) {
   final movieRepository = ref.watch( movieRepositoryProvider );
   
   return MovieMapNotifier(getMovie: movieRepository.getMovieById );

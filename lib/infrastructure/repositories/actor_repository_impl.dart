@@ -1,0 +1,21 @@
+
+import 'package:proyecto_grupo10/domain/datasources/actors_datasource.dart';
+import 'package:proyecto_grupo10/domain/entities/actor.dart';
+import 'package:proyecto_grupo10/domain/repositories/actors_repository.dart';
+
+class ActorRepositoryImpl extends ActorsRepository {
+
+
+  final ActorsDatasource datasource;
+
+  ActorRepositoryImpl(this.datasource);
+
+
+
+  @override
+  Future<List<Actor>> getActorByMovie(String movieId) {
+    return datasource.getActorByMovie(movieId);
+  }
+
+
+}
