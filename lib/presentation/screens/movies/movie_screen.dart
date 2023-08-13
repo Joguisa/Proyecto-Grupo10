@@ -77,13 +77,13 @@ class _MovieDetails extends StatelessWidget {
       children: [
 
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Image
               ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(15),
                 child: Image.network(
                   movie.posterPath,
                   width: size.width * 0.3,
@@ -92,41 +92,76 @@ class _MovieDetails extends StatelessWidget {
 
               const SizedBox( width: 10),
 
-              // Description
               SizedBox(
                 width: (size.width - 40) * 0.7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text( movie.title, style: textStyles.titleLarge),
-                    Text( movie.overview),
+                    Text( movie.title, style: const TextStyle( fontSize: 25, fontWeight: FontWeight.bold)),
+                    // const SizedBox(height: 10),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8),
+                    //   child: Wrap(
+                    //     children: [
+                    //       ...movie.genreIds.map((gender) => Container(
+                    //         margin: const EdgeInsets.only(right: 10),
+                    //         child: Chip(
+                    //           label: Text(gender),
+                    //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    //         ),
+                    //       ))
+                    //     ],
+                    //   ),
+                    // ),
+                    // CircularPercentIndicator(
+                    //   radius: 20,
+                    //   lineWidth: 3.0,
+                    //   percent: movie.voteAverage / 10,
+                    //   center: Text(
+                    //     "${(movie.voteAverage * 10).toStringAsFixed(0)}%",
+                    //     style: const TextStyle(fontSize: 10),
+                    //   ),
+                    //   progressColor: Colors.green
+                    // ),
                   ],
+
+                  // Los generos de la película
+                  
                 ),
               )
-
             ],
           ),
         ),
 
-        // Los generos de la película
-        // Padding(
-        //   padding: const EdgeInsets.all(8),
-        //   child: Wrap(
-        //     children: [
-        //       ...movie.genreIds.map((gender) => Container(
-        //         margin: const EdgeInsets.only(right: 10),
-        //         child: Chip(
-        //           label: Text(gender),
-        //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        //         ),
-        //       ))
-        //     ],
-        //   ),
-        // ),
+        //Description
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: SizedBox(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text( 'Descripción', style: TextStyle( fontSize: 25, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                Text( movie.overview),
+              ],
+            ),
+          ),
+        ),
+        // Mostrar actores ListView
 
         // Mostrar actores ListView
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: SizedBox(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Reparto', style: TextStyle( fontSize: 25, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
         _ActorsByMovie(movieId: movie.id.toString() ),
-
         const SizedBox(height: 50),
       ],
     );
@@ -180,12 +215,14 @@ class _ActorsByMovie extends ConsumerWidget {
 
                 // Cast names
                 const SizedBox(height: 5),
-                Text(actor.name, maxLines: 2),
+                Text(actor.name, maxLines: 2, style:const TextStyle( fontSize: 15, fontWeight: FontWeight.bold),),
                 Text(actor.character ?? '', 
                 maxLines: 2,
                 style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis
+                  overflow: TextOverflow.ellipsis,
+                  color: Color.fromARGB(255, 2, 41, 73)
                 ),
                 ),
               ]
@@ -217,11 +254,6 @@ class _CustomSliverAppBar extends StatelessWidget {
       // shadowColor: Colors.red, // comentar si se ve mal 
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        // title: Text(
-        //   movie.title,
-        //   style: const TextStyle(fontSize: 20),
-        //   textAlign: TextAlign.start,
-        // ),
         background: Stack(
           children: [
 
@@ -229,10 +261,6 @@ class _CustomSliverAppBar extends StatelessWidget {
               child: Image.network(
                 movie.posterPath,
                 fit: BoxFit.cover,
-                // loadingBuilder: (context, child, loadingProgress) {
-                //   if ( loadingProgress != null ) return const SizedBox();
-                //   return FadeIn(child: child);
-                // },
               ),
             ),
 

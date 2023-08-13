@@ -91,7 +91,7 @@ class MovieDetails {
         "backdrop_path": backdropPath,
         "belongs_to_collection": belongsToCollection,
         "budget": budget,
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        // "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
         "homepage": homepage,
         "id": id,
         "imdb_id": imdbId,

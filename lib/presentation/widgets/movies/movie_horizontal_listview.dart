@@ -139,7 +139,16 @@ class _Slide extends StatelessWidget {
               const SizedBox(width: 10,),
               Text( HumanFormats.number(movie.popularity), style: textStyles.bodySmall, ),
             ],
-          )
+          ),
+          // Percent Indicator
+          // const SizedBox(height: 10), // Espacio entre la fila anterior y el indicador
+          // CircularPercentIndicator(
+          //   radius: 30.0, // Tamaño del círculo del indicador
+          //   lineWidth: 3.0, // Grosor de la línea del círculo
+          //   percent: movie.voteAverage / 10, // Porcentaje basado en la escala de 0 a 1
+          //   center: Text((movie.voteAverage * 10).toStringAsFixed(1)), // Valor del voto en el centro
+          //   progressColor: Colors.green, // Color de relleno del círculo
+          // ),
         ]
       ),
       

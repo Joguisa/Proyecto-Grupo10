@@ -19,6 +19,7 @@ dependencies:
   flutter_riverpod: ^2.3.6
   go_router: ^10.0.0
   intl: ^0.18.1
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -30,6 +31,8 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/splash/
+    - assets/logos/
   # fonts:
   #   - family: Schyler
   #     fonts:
