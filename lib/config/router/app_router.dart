@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:proyecto_grupo10/presentation/screens/movies/home_screen.dart';
 import 'package:proyecto_grupo10/presentation/views/views.dart';
 import 'package:proyecto_grupo10/presentation/screens/screens.dart';
 

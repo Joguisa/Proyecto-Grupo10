@@ -68,14 +68,13 @@ class _MovieDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final size = MediaQuery.of(context).size;
-    final textStyles = Theme.of(context).textTheme;
+    // final textStyles = Theme.of(context).textTheme;
 
 
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Padding(
           padding: const EdgeInsets.all(5),
           child: Row(
@@ -89,9 +88,7 @@ class _MovieDetails extends StatelessWidget {
                   width: size.width * 0.3,
                 ),
               ),
-
               const SizedBox( width: 10),
-
               SizedBox(
                 width: (size.width - 40) * 0.7,
                 child: Column(
