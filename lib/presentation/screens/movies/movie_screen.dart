@@ -98,32 +98,8 @@ class _MovieDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text( movie.title, style: const TextStyle( fontSize: 25, fontWeight: FontWeight.bold)),
-                    // const SizedBox(height: 10),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8),
-                    //   child: Wrap(
-                    //     children: [
-                    //       ...movie.genreIds.map((gender) => Container(
-                    //         margin: const EdgeInsets.only(right: 10),
-                    //         child: Chip(
-                    //           label: Text(gender),
-                    //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    //         ),
-                    //       ))
-                    //     ],
-                    //   ),
-                    // ),
-                    // CircularPercentIndicator(
-                    //   radius: 20,
-                    //   lineWidth: 3.0,
-                    //   percent: movie.voteAverage / 10,
-                    //   center: Text(
-                    //     "${(movie.voteAverage * 10).toStringAsFixed(0)}%",
-                    //     style: const TextStyle(fontSize: 10),
-                    //   ),
-                    //   progressColor: Colors.green
-                    // ),
-                  ],
+                    const SizedBox(height: 10),
+                    ],
 
                   // Los generos de la película
                   
